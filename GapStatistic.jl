@@ -5,7 +5,7 @@ module GapStatistics
     using Clustering
     export GapStatistic
 
-    function rescale(x)
+    function Rescale(x)
         y = copy(x)
         for d in 1:size(x,2)
             y[:,d] = (x[:,d] .- minimum(x[:,d]))/(maximum(x[:,d])-minimum(x[:,d]))
@@ -52,7 +52,7 @@ module GapStatistics
     """
     function GapStatistic(X;samples=100, distance=Euclidean(), clustering=kmeans, rescale=true)::Tuple{Int,Array{Float64}}
         if rescale
-            X = rescale(X)
+            X = Rescale(X)
         end
         k_max = size(X,1)-1
         S = zeros(size(X,1),size(X,2),samples)
